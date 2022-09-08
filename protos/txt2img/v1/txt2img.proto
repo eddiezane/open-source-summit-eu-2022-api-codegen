@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package txt2img.v1;
+
+option go_package = "github.com/eddiezane/open-source-summit-eu-2022-api-codegen/protos/txt2img/v1";
+
+message GenerateImageRequest {
+  string prompt = 1;
+}
+
+message GenerateImageResponse {
+  string id = 1;
+}
+
+message GetImageRequest {
+  string id = 1;
+}
+
+message GetImageResponse {
+  string url = 1;
+}
+
+message ListImagesRequest {
+}
+
+message ListImagesResponse {
+  repeated string images = 1;
+}
+
+message DeleteImageRequest {
+  string id = 1;
+}
+
+message DeleteImageResponse {
+}
+
+service Txt2ImgService {
+  rpc GenerateImage(GenerateImageRequest) returns (GenerateImageResponse) {}
+  rpc GetImage(GetImageRequest) returns (GetImageResponse) {}
+  rpc ListImages(ListImagesRequest) returns (ListImagesResponse) {}
+  rpc DeleteImage(DeleteImageRequest) returns (DeleteImageResponse) {}
+}
