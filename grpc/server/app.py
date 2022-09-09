@@ -2,7 +2,6 @@ from concurrent import futures
 from uuid import uuid4 as uuid
 from threading import Lock
 
-
 import grpc
 
 from txt2img.v1 import txt2img_pb2
@@ -62,5 +61,5 @@ def serve():
     server.wait_for_termination()
 
 if __name__ == "__main__":
-    print('starting server...')
+    print("starting server...")
     serve()
