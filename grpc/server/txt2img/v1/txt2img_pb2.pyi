@@ -22,10 +22,12 @@ class GenerateImageRequest(_message.Message):
     def __init__(self, prompt: _Optional[str] = ...) -> None: ...
 
 class GenerateImageResponse(_message.Message):
-    __slots__ = ["id"]
+    __slots__ = ["id", "url"]
     ID_FIELD_NUMBER: _ClassVar[int]
+    URL_FIELD_NUMBER: _ClassVar[int]
     id: str
-    def __init__(self, id: _Optional[str] = ...) -> None: ...
+    url: str
+    def __init__(self, id: _Optional[str] = ..., url: _Optional[str] = ...) -> None: ...
 
 class GetImageRequest(_message.Message):
     __slots__ = ["id"]

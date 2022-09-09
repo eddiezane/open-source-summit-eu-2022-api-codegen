@@ -12,32 +12,34 @@ from storage import upload_image, delete_image
 
 class Txt2ImgService(txt2img_pb2_grpc.Txt2ImgServiceServicer):
     def __init__(self):
-        self.lock = Lock()
+        self.images_lock = Lock()
+        self.gpu_lock = Lock()
         self.images = {}
 
     def GenerateImage(self, request, context):
         prompt = request.prompt
         if len(prompt) == 0:
             context.abort(grpc.StatusCode.INVALID_ARGUMENT, "prompt is required")
-        image = run_inference(prompt)
-        id = str(uuid())
-        url = upload_image(id, image)
-        with self.lock:
+        with self.gpu_lock:
+            image = run_inference(prompt)
+        with self.images_lock:
+            id = str(uuid())
+            url = upload_image(id, image)
             self.images[id] = url
-        return txt2img_pb2.GenerateImageResponse(id=id)
+        return txt2img_pb2.GenerateImageResponse(id=id, url=url)
 
     def GetImage(self, request, context):
         id = request.id
         if len(id) == 0:
             context.abort(grpc.StatusCode.INVALID_ARGUMENT, "id is required")
-        with self.lock:
+        with self.images_lock:
             if id not in self.images:
                 context.abort(grpc.StatusCode.INVALID_ARGUMENT, "id not found")
             url = self.images[id]
         return txt2img_pb2.GetImageResponse(url=url)
 
     def ListImages(self, request, context):
-        with self.lock:
+        with self.images_lock:
             images = self.images.keys()
         return txt2img_pb2.ListImagesResponse(images=images)
 
@@ -45,7 +47,7 @@ class Txt2ImgService(txt2img_pb2_grpc.Txt2ImgServiceServicer):
         id = request.id
         if len(id) == 0:
             context.abort(grpc.StatusCode.INVALID_ARGUMENT, "id is required")
-        with self.lock:
+        with self.images_lock:
             if id not in self.images:
                 context.abort(grpc.StatusCode.INVALID_ARGUMENT, "id not found")
             del self.images[id]

@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             (unknown)
-// source: protos/txt2img/v1/txt2img.proto
+// source: txt2img/v1/txt2img.proto
 
-package v1
+package txt2imgv1
 
 import (
 	context "context"
@@ -209,5 +209,5 @@ var Txt2ImgService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "protos/txt2img/v1/txt2img.proto",
+	Metadata: "txt2img/v1/txt2img.proto",
 }

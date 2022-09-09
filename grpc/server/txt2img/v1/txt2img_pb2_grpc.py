@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-from protos.txt2img.v1 import txt2img_pb2 as protos_dot_txt2img_dot_v1_dot_txt2img__pb2
+from txt2img.v1 import txt2img_pb2 as txt2img_dot_v1_dot_txt2img__pb2
 
 
 class Txt2ImgServiceStub(object):
@@ -16,23 +16,23 @@ class Txt2ImgServiceStub(object):
         """
         self.GenerateImage = channel.unary_unary(
                 '/txt2img.v1.Txt2ImgService/GenerateImage',
-                request_serializer=protos_dot_txt2img_dot_v1_dot_txt2img__pb2.GenerateImageRequest.SerializeToString,
-                response_deserializer=protos_dot_txt2img_dot_v1_dot_txt2img__pb2.GenerateImageResponse.FromString,
+                request_serializer=txt2img_dot_v1_dot_txt2img__pb2.GenerateImageRequest.SerializeToString,
+                response_deserializer=txt2img_dot_v1_dot_txt2img__pb2.GenerateImageResponse.FromString,
                 )
         self.GetImage = channel.unary_unary(
                 '/txt2img.v1.Txt2ImgService/GetImage',
-                request_serializer=protos_dot_txt2img_dot_v1_dot_txt2img__pb2.GetImageRequest.SerializeToString,
-                response_deserializer=protos_dot_txt2img_dot_v1_dot_txt2img__pb2.GetImageResponse.FromString,
+                request_serializer=txt2img_dot_v1_dot_txt2img__pb2.GetImageRequest.SerializeToString,
+                response_deserializer=txt2img_dot_v1_dot_txt2img__pb2.GetImageResponse.FromString,
                 )
         self.ListImages = channel.unary_unary(
                 '/txt2img.v1.Txt2ImgService/ListImages',
-                request_serializer=protos_dot_txt2img_dot_v1_dot_txt2img__pb2.ListImagesRequest.SerializeToString,
-                response_deserializer=protos_dot_txt2img_dot_v1_dot_txt2img__pb2.ListImagesResponse.FromString,
+                request_serializer=txt2img_dot_v1_dot_txt2img__pb2.ListImagesRequest.SerializeToString,
+                response_deserializer=txt2img_dot_v1_dot_txt2img__pb2.ListImagesResponse.FromString,
                 )
         self.DeleteImage = channel.unary_unary(
                 '/txt2img.v1.Txt2ImgService/DeleteImage',
-                request_serializer=protos_dot_txt2img_dot_v1_dot_txt2img__pb2.DeleteImageRequest.SerializeToString,
-                response_deserializer=protos_dot_txt2img_dot_v1_dot_txt2img__pb2.DeleteImageResponse.FromString,
+                request_serializer=txt2img_dot_v1_dot_txt2img__pb2.DeleteImageRequest.SerializeToString,
+                response_deserializer=txt2img_dot_v1_dot_txt2img__pb2.DeleteImageResponse.FromString,
                 )
 
 
@@ -68,23 +68,23 @@ def add_Txt2ImgServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'GenerateImage': grpc.unary_unary_rpc_method_handler(
                     servicer.GenerateImage,
-                    request_deserializer=protos_dot_txt2img_dot_v1_dot_txt2img__pb2.GenerateImageRequest.FromString,
-                    response_serializer=protos_dot_txt2img_dot_v1_dot_txt2img__pb2.GenerateImageResponse.SerializeToString,
+                    request_deserializer=txt2img_dot_v1_dot_txt2img__pb2.GenerateImageRequest.FromString,
+                    response_serializer=txt2img_dot_v1_dot_txt2img__pb2.GenerateImageResponse.SerializeToString,
             ),
             'GetImage': grpc.unary_unary_rpc_method_handler(
                     servicer.GetImage,
-                    request_deserializer=protos_dot_txt2img_dot_v1_dot_txt2img__pb2.GetImageRequest.FromString,
-                    response_serializer=protos_dot_txt2img_dot_v1_dot_txt2img__pb2.GetImageResponse.SerializeToString,
+                    request_deserializer=txt2img_dot_v1_dot_txt2img__pb2.GetImageRequest.FromString,
+                    response_serializer=txt2img_dot_v1_dot_txt2img__pb2.GetImageResponse.SerializeToString,
             ),
             'ListImages': grpc.unary_unary_rpc_method_handler(
                     servicer.ListImages,
-                    request_deserializer=protos_dot_txt2img_dot_v1_dot_txt2img__pb2.ListImagesRequest.FromString,
-                    response_serializer=protos_dot_txt2img_dot_v1_dot_txt2img__pb2.ListImagesResponse.SerializeToString,
+                    request_deserializer=txt2img_dot_v1_dot_txt2img__pb2.ListImagesRequest.FromString,
+                    response_serializer=txt2img_dot_v1_dot_txt2img__pb2.ListImagesResponse.SerializeToString,
             ),
             'DeleteImage': grpc.unary_unary_rpc_method_handler(
                     servicer.DeleteImage,
-                    request_deserializer=protos_dot_txt2img_dot_v1_dot_txt2img__pb2.DeleteImageRequest.FromString,
-                    response_serializer=protos_dot_txt2img_dot_v1_dot_txt2img__pb2.DeleteImageResponse.SerializeToString,
+                    request_deserializer=txt2img_dot_v1_dot_txt2img__pb2.DeleteImageRequest.FromString,
+                    response_serializer=txt2img_dot_v1_dot_txt2img__pb2.DeleteImageResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -108,8 +108,8 @@ class Txt2ImgService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/txt2img.v1.Txt2ImgService/GenerateImage',
-            protos_dot_txt2img_dot_v1_dot_txt2img__pb2.GenerateImageRequest.SerializeToString,
-            protos_dot_txt2img_dot_v1_dot_txt2img__pb2.GenerateImageResponse.FromString,
+            txt2img_dot_v1_dot_txt2img__pb2.GenerateImageRequest.SerializeToString,
+            txt2img_dot_v1_dot_txt2img__pb2.GenerateImageResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -125,8 +125,8 @@ class Txt2ImgService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/txt2img.v1.Txt2ImgService/GetImage',
-            protos_dot_txt2img_dot_v1_dot_txt2img__pb2.GetImageRequest.SerializeToString,
-            protos_dot_txt2img_dot_v1_dot_txt2img__pb2.GetImageResponse.FromString,
+            txt2img_dot_v1_dot_txt2img__pb2.GetImageRequest.SerializeToString,
+            txt2img_dot_v1_dot_txt2img__pb2.GetImageResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -142,8 +142,8 @@ class Txt2ImgService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/txt2img.v1.Txt2ImgService/ListImages',
-            protos_dot_txt2img_dot_v1_dot_txt2img__pb2.ListImagesRequest.SerializeToString,
-            protos_dot_txt2img_dot_v1_dot_txt2img__pb2.ListImagesResponse.FromString,
+            txt2img_dot_v1_dot_txt2img__pb2.ListImagesRequest.SerializeToString,
+            txt2img_dot_v1_dot_txt2img__pb2.ListImagesResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -159,7 +159,7 @@ class Txt2ImgService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/txt2img.v1.Txt2ImgService/DeleteImage',
-            protos_dot_txt2img_dot_v1_dot_txt2img__pb2.DeleteImageRequest.SerializeToString,
-            protos_dot_txt2img_dot_v1_dot_txt2img__pb2.DeleteImageResponse.FromString,
+            txt2img_dot_v1_dot_txt2img__pb2.DeleteImageRequest.SerializeToString,
+            txt2img_dot_v1_dot_txt2img__pb2.DeleteImageResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

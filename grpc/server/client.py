@@ -3,7 +3,7 @@ from txt2img.v1 import txt2img_pb2
 from txt2img.v1 import txt2img_pb2_grpc
 
 
-channel = grpc.insecure_channel("34.133.32.31:8080")
+channel = grpc.insecure_channel("35.188.187.17:8080")
 client = txt2img_pb2_grpc.Txt2ImgServiceStub(channel)
 req = txt2img_pb2.GenerateImageRequest(prompt="an orange cat")
 print(f"{req}")

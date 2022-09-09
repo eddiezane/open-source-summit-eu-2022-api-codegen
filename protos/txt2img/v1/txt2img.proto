@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package txt2img.v1;
 
-option go_package = "github.com/eddiezane/open-source-summit-eu-2022-api-codegen/protos/txt2img/v1";
+option go_package = "github.com/eddiezane/open-source-summit-eu-2022-api-codegen/protos/txt2img/v1;txt2imgv1";
 
 message GenerateImageRequest {
   string prompt = 1;
@@ -10,6 +10,7 @@ message GenerateImageRequest {
 
 message GenerateImageResponse {
   string id = 1;
+  string url = 2;
 }
 
 message GetImageRequest {
