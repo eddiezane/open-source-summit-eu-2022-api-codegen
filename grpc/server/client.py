@@ -1,9 +1,13 @@
+import os
 import grpc
 from txt2img.v1 import txt2img_pb2
 from txt2img.v1 import txt2img_pb2_grpc
 
+host = os.getenv("TXT2IMG_HOST")
+if host == "" or host == None:
+    raise Exception("TXT2IMG_HOST required")
 
-channel = grpc.insecure_channel("35.188.187.17:8080")
+channel = grpc.insecure_channel(host)
 client = txt2img_pb2_grpc.Txt2ImgServiceStub(channel)
 req = txt2img_pb2.GenerateImageRequest(prompt="an orange cat")
 print(f"{req}")

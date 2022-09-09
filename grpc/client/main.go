@@ -2,38 +2,40 @@ package main
 
 import (
 	"context"
+	"errors"
 	"fmt"
-	"sync"
+	"os"
 
-	"github.com/eddiezane/open-source-summit-eu-2022-api-codegen/grpc/client/txt2img/v1"
 	"google.golang.org/grpc"
+
+	txt2imgv1 "github.com/eddiezane/open-source-summit-eu-2022-api-codegen/grpc/client/txt2img/v1"
 )
 
 func main() {
-	conn, err := grpc.Dial("35.188.187.17:8080", grpc.WithInsecure())
+	host := os.Getenv("TXT2IMG_HOST")
+	if host == "" {
+		panic(errors.New("TXT2IMG_HOST required"))
+	}
+
+	conn, err := grpc.Dial(host, grpc.WithInsecure())
 	if err != nil {
 		panic(err)
 	}
 
 	client := txt2imgv1.NewTxt2ImgServiceClient(conn)
 
-	wg := sync.WaitGroup{}
+	gir, err := client.GenerateImage(context.Background(), &txt2imgv1.GenerateImageRequest{Prompt: "a roller disco"})
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(gir.Url)
 
-	for _, p := range []string{"a big bad wolf", "the end of the world"} {
-		wg.Add(1)
-		go func(p string) {
-			res, err := client.GenerateImage(context.Background(), &txt2imgv1.GenerateImageRequest{Prompt: p})
-			if err != nil {
-				fmt.Println(err)
-			}
-			url, err := client.GetImage(context.Background(), &txt2imgv1.GetImageRequest{Id: res.GetId()})
-			if err != nil {
-				fmt.Println(err)
-			}
-			fmt.Println(url)
-			wg.Done()
-		}(p)
+	lir, err := client.ListImages(context.Background(), &txt2imgv1.ListImagesRequest{})
+	if err != nil {
+		panic(err)
 	}
 
-	wg.Wait()
+	for _, id := range lir.Images {
+		client.DeleteImage(context.Background(), &txt2imgv1.DeleteImageRequest{Id: id})
+	}
 }
