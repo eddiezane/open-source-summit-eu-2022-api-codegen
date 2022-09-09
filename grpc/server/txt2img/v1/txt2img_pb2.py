@@ -11,32 +11,41 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
+from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x18txt2img/v1/txt2img.proto\x12\ntxt2img.v1\".\n\x14GenerateImageRequest\x12\x16\n\x06prompt\x18\x01 \x01(\tR\x06prompt\"9\n\x15GenerateImageResponse\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x10\n\x03url\x18\x02 \x01(\tR\x03url\"!\n\x0fGetImageRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"$\n\x10GetImageResponse\x12\x10\n\x03url\x18\x01 \x01(\tR\x03url\"\x13\n\x11ListImagesRequest\",\n\x12ListImagesResponse\x12\x16\n\x06images\x18\x01 \x03(\tR\x06images\"$\n\x12\x44\x65leteImageRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"\x15\n\x13\x44\x65leteImageResponse2\xd2\x02\n\x0eTxt2ImgService\x12V\n\rGenerateImage\x12 .txt2img.v1.GenerateImageRequest\x1a!.txt2img.v1.GenerateImageResponse\"\x00\x12G\n\x08GetImage\x12\x1b.txt2img.v1.GetImageRequest\x1a\x1c.txt2img.v1.GetImageResponse\"\x00\x12M\n\nListImages\x12\x1d.txt2img.v1.ListImagesRequest\x1a\x1e.txt2img.v1.ListImagesResponse\"\x00\x12P\n\x0b\x44\x65leteImage\x12\x1e.txt2img.v1.DeleteImageRequest\x1a\x1f.txt2img.v1.DeleteImageResponse\"\x00\x42YZWgithub.com/eddiezane/open-source-summit-eu-2022-api-codegen/protos/txt2img/v1;txt2imgv1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x18txt2img/v1/txt2img.proto\x12\ntxt2img.v1\x1a\x1cgoogle/api/annotations.proto\".\n\x14GenerateImageRequest\x12\x16\n\x06prompt\x18\x01 \x01(\tR\x06prompt\"9\n\x15GenerateImageResponse\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x10\n\x03url\x18\x02 \x01(\tR\x03url\"!\n\x0fGetImageRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"$\n\x10GetImageResponse\x12\x10\n\x03url\x18\x01 \x01(\tR\x03url\"\x13\n\x11ListImagesRequest\",\n\x12ListImagesResponse\x12\x16\n\x06images\x18\x01 \x03(\tR\x06images\"$\n\x12\x44\x65leteImageRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"\x15\n\x13\x44\x65leteImageResponse2\xaf\x03\n\x0eTxt2ImgService\x12s\n\rGenerateImage\x12 .txt2img.v1.GenerateImageRequest\x1a!.txt2img.v1.GenerateImageResponse\"\x1d\x82\xd3\xe4\x93\x02\x17:\x01*\"\x12/v1/generate_image\x12^\n\x08GetImage\x12\x1b.txt2img.v1.GetImageRequest\x1a\x1c.txt2img.v1.GetImageResponse\"\x17\x82\xd3\xe4\x93\x02\x11\x12\x0f/v1/images/{id}\x12_\n\nListImages\x12\x1d.txt2img.v1.ListImagesRequest\x1a\x1e.txt2img.v1.ListImagesResponse\"\x12\x82\xd3\xe4\x93\x02\x0c\x12\n/v1/images\x12g\n\x0b\x44\x65leteImage\x12\x1e.txt2img.v1.DeleteImageRequest\x1a\x1f.txt2img.v1.DeleteImageResponse\"\x17\x82\xd3\xe4\x93\x02\x11*\x0f/v1/images/{id}B^Z\\github.com/eddiezane/open-source-summit-eu-2022-api-codegen/grpc/client/txt2img/v1;txt2imgv1b\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'txt2img.v1.txt2img_pb2', globals())
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
-  DESCRIPTOR._serialized_options = b'ZWgithub.com/eddiezane/open-source-summit-eu-2022-api-codegen/protos/txt2img/v1;txt2imgv1'
-  _GENERATEIMAGEREQUEST._serialized_start=40
-  _GENERATEIMAGEREQUEST._serialized_end=86
-  _GENERATEIMAGERESPONSE._serialized_start=88
-  _GENERATEIMAGERESPONSE._serialized_end=145
-  _GETIMAGEREQUEST._serialized_start=147
-  _GETIMAGEREQUEST._serialized_end=180
-  _GETIMAGERESPONSE._serialized_start=182
-  _GETIMAGERESPONSE._serialized_end=218
-  _LISTIMAGESREQUEST._serialized_start=220
-  _LISTIMAGESREQUEST._serialized_end=239
-  _LISTIMAGESRESPONSE._serialized_start=241
-  _LISTIMAGESRESPONSE._serialized_end=285
-  _DELETEIMAGEREQUEST._serialized_start=287
-  _DELETEIMAGEREQUEST._serialized_end=323
-  _DELETEIMAGERESPONSE._serialized_start=325
-  _DELETEIMAGERESPONSE._serialized_end=346
-  _TXT2IMGSERVICE._serialized_start=349
-  _TXT2IMGSERVICE._serialized_end=687
+  DESCRIPTOR._serialized_options = b'Z\\github.com/eddiezane/open-source-summit-eu-2022-api-codegen/grpc/client/txt2img/v1;txt2imgv1'
+  _TXT2IMGSERVICE.methods_by_name['GenerateImage']._options = None
+  _TXT2IMGSERVICE.methods_by_name['GenerateImage']._serialized_options = b'\202\323\344\223\002\027:\001*\"\022/v1/generate_image'
+  _TXT2IMGSERVICE.methods_by_name['GetImage']._options = None
+  _TXT2IMGSERVICE.methods_by_name['GetImage']._serialized_options = b'\202\323\344\223\002\021\022\017/v1/images/{id}'
+  _TXT2IMGSERVICE.methods_by_name['ListImages']._options = None
+  _TXT2IMGSERVICE.methods_by_name['ListImages']._serialized_options = b'\202\323\344\223\002\014\022\n/v1/images'
+  _TXT2IMGSERVICE.methods_by_name['DeleteImage']._options = None
+  _TXT2IMGSERVICE.methods_by_name['DeleteImage']._serialized_options = b'\202\323\344\223\002\021*\017/v1/images/{id}'
+  _GENERATEIMAGEREQUEST._serialized_start=70
+  _GENERATEIMAGEREQUEST._serialized_end=116
+  _GENERATEIMAGERESPONSE._serialized_start=118
+  _GENERATEIMAGERESPONSE._serialized_end=175
+  _GETIMAGEREQUEST._serialized_start=177
+  _GETIMAGEREQUEST._serialized_end=210
+  _GETIMAGERESPONSE._serialized_start=212
+  _GETIMAGERESPONSE._serialized_end=248
+  _LISTIMAGESREQUEST._serialized_start=250
+  _LISTIMAGESREQUEST._serialized_end=269
+  _LISTIMAGESRESPONSE._serialized_start=271
+  _LISTIMAGESRESPONSE._serialized_end=315
+  _DELETEIMAGEREQUEST._serialized_start=317
+  _DELETEIMAGEREQUEST._serialized_end=353
+  _DELETEIMAGERESPONSE._serialized_start=355
+  _DELETEIMAGERESPONSE._serialized_end=376
+  _TXT2IMGSERVICE._serialized_start=379
+  _TXT2IMGSERVICE._serialized_end=810
 # @@protoc_insertion_point(module_scope)

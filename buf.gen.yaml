@@ -6,6 +6,15 @@ plugins:
   - remote: buf.build/grpc/plugins/go:v1.2.0-1
     out: grpc/client
     opt: paths=source_relative
+
+  - remote: buf.build/grpc-ecosystem/plugins/grpc-gateway:v2.6.0-1
+    out: grpc/gateway
+    opt:
+      - paths=source_relative
+      - standalone=true
+  # - remote: buf.build/grpc-ecosystem/plugins/grpc-gateway:v2.11.3-1
+    # out: grpc/gateway
+
   - remote: buf.build/protocolbuffers/plugins/python:v21.5.0-1
     out: grpc/server
     opt: pyi_out=.

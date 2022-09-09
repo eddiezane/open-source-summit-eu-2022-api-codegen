@@ -13,4 +13,4 @@ set -o pipefail
 # deactivate
 
 # Buf
-buf generate protos
+buf generate

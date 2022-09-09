@@ -2,7 +2,9 @@ syntax = "proto3";
 
 package txt2img.v1;
 
-option go_package = "github.com/eddiezane/open-source-summit-eu-2022-api-codegen/protos/txt2img/v1;txt2imgv1";
+import "google/api/annotations.proto";
+
+option go_package = "github.com/eddiezane/open-source-summit-eu-2022-api-codegen/grpc/client/txt2img/v1;txt2imgv1";
 
 message GenerateImageRequest {
   string prompt = 1;
@@ -36,8 +38,28 @@ message DeleteImageResponse {
 }
 
 service Txt2ImgService {
-  rpc GenerateImage(GenerateImageRequest) returns (GenerateImageResponse) {}
-  rpc GetImage(GetImageRequest) returns (GetImageResponse) {}
-  rpc ListImages(ListImagesRequest) returns (ListImagesResponse) {}
-  rpc DeleteImage(DeleteImageRequest) returns (DeleteImageResponse) {}
+  rpc GenerateImage(GenerateImageRequest) returns (GenerateImageResponse) {
+    option (google.api.http) = {
+      post: "/v1/generate_image"
+      body: "*"
+    };
+  }
+
+  rpc GetImage(GetImageRequest) returns (GetImageResponse) {
+    option (google.api.http) = {
+      get: "/v1/images/{id}"
+    };
+  }
+
+  rpc ListImages(ListImagesRequest) returns (ListImagesResponse) {
+    option (google.api.http) = {
+      get: "/v1/images"
+    };
+  }
+
+  rpc DeleteImage(DeleteImageRequest) returns (DeleteImageResponse) {
+    option (google.api.http) = {
+      delete: "/v1/images/{id}"
+    };
+  }
 }
