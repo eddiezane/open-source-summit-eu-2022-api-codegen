@@ -200,7 +200,7 @@ func RegisterTxt2ImgServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/txt2img.v1.Txt2ImgService/GenerateImage", runtime.WithHTTPPathPattern("/v1/generate_image"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/txt2img.v1.Txt2ImgService/GenerateImage", runtime.WithHTTPPathPattern("/v1/images"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -331,7 +331,7 @@ func RegisterTxt2ImgServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/txt2img.v1.Txt2ImgService/GenerateImage", runtime.WithHTTPPathPattern("/v1/generate_image"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/txt2img.v1.Txt2ImgService/GenerateImage", runtime.WithHTTPPathPattern("/v1/images"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -411,7 +411,7 @@ func RegisterTxt2ImgServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 }
 
 var (
-	pattern_Txt2ImgService_GenerateImage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "generate_image"}, ""))
+	pattern_Txt2ImgService_GenerateImage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "images"}, ""))
 
 	pattern_Txt2ImgService_GetImage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "images", "id"}, ""))
 

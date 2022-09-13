@@ -14,3 +14,5 @@ set -o pipefail
 
 # Buf
 buf generate
+
+swagger generate client -t swagger/gen -f swagger/swagger.yaml

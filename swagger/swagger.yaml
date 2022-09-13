@@ -1,0 +1,72 @@
+swagger: '2.0'
+x-stoplight:
+  id: 8h1qxm9s2vt21
+info:
+  title: txt2img
+  version: '1.0'
+host: 'localhost:3000'
+schemes:
+  - http
+produces:
+  - application/json
+consumes:
+  - application/json
+paths:
+  '/images/{id}':
+    parameters:
+      - type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Image'
+      operationId: get-image
+    delete:
+      summary: ''
+      operationId: delete-image
+      responses:
+        '200':
+          description: OK
+  /images:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties: {}
+      operationId: get-images
+    post:
+      summary: ''
+      operationId: create-image
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Image'
+      parameters:
+        - in: formData
+          type: string
+          name: prompt
+definitions:
+  Image:
+    title: Image
+    x-stoplight:
+      id: 00fw3hzpujosv
+    type: object
+    properties:
+      id:
+        type: string
+      prompt:
+        type: string
+      url:
+        type: string
+

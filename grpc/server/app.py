@@ -41,7 +41,7 @@ class Txt2ImgService(txt2img_pb2_grpc.Txt2ImgServiceServicer):
 
     def ListImages(self, request, context):
         with self.images_lock:
-            images = self.images
+            images = self.images.values()
         return txt2img_pb2.ListImagesResponse(images=images)
 
     def DeleteImage(self, request, context):

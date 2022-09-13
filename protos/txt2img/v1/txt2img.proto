@@ -45,7 +45,7 @@ message DeleteImageResponse {
 service Txt2ImgService {
   rpc GenerateImage(GenerateImageRequest) returns (GenerateImageResponse) {
     option (google.api.http) = {
-      post: "/v1/generate_image"
+      post: "/v1/images"
       body: "*"
     };
   }

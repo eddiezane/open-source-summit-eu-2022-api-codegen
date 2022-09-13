@@ -16,7 +16,27 @@
     "application/json"
   ],
   "paths": {
-    "/v1/generate_image": {
+    "/v1/images": {
+      "get": {
+        "operationId": "Txt2ImgService_ListImages",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListImagesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Txt2ImgService"
+        ]
+      },
       "post": {
         "operationId": "Txt2ImgService_GenerateImage",
         "responses": {
@@ -43,28 +63,6 @@
             }
           }
         ],
-        "tags": [
-          "Txt2ImgService"
-        ]
-      }
-    },
-    "/v1/images": {
-      "get": {
-        "operationId": "Txt2ImgService_ListImages",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1ListImagesResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
         "tags": [
           "Txt2ImgService"
         ]
