@@ -70,11 +70,11 @@ func (o *DeleteImageOK) IsCode(code int) bool {
 }
 
 func (o *DeleteImageOK) Error() string {
-	return fmt.Sprintf("[DELETE /images/{id}][%d] deleteImageOK ", 200)
+	return fmt.Sprintf("[DELETE /v1/images/{id}][%d] deleteImageOK ", 200)
 }
 
 func (o *DeleteImageOK) String() string {
-	return fmt.Sprintf("[DELETE /images/{id}][%d] deleteImageOK ", 200)
+	return fmt.Sprintf("[DELETE /v1/images/{id}][%d] deleteImageOK ", 200)
 }
 
 func (o *DeleteImageOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

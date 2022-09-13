@@ -61,8 +61,8 @@ CreateImageParams contains all the parameters to send to the API endpoint
 */
 type CreateImageParams struct {
 
-	// Prompt.
-	Prompt *string
+	// Body.
+	Body CreateImageBody
 
 	timeout    time.Duration
 	Context    context.Context
@@ -117,15 +117,15 @@ func (o *CreateImageParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithPrompt adds the prompt to the create image params
-func (o *CreateImageParams) WithPrompt(prompt *string) *CreateImageParams {
-	o.SetPrompt(prompt)
+// WithBody adds the body to the create image params
+func (o *CreateImageParams) WithBody(body CreateImageBody) *CreateImageParams {
+	o.SetBody(body)
 	return o
 }
 
-// SetPrompt adds the prompt to the create image params
-func (o *CreateImageParams) SetPrompt(prompt *string) {
-	o.Prompt = prompt
+// SetBody adds the body to the create image params
+func (o *CreateImageParams) SetBody(body CreateImageBody) {
+	o.Body = body
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -135,20 +135,8 @@ func (o *CreateImageParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		return err
 	}
 	var res []error
-
-	if o.Prompt != nil {
-
-		// form param prompt
-		var frPrompt string
-		if o.Prompt != nil {
-			frPrompt = *o.Prompt
-		}
-		fPrompt := frPrompt
-		if fPrompt != "" {
-			if err := r.SetFormParam("prompt", fPrompt); err != nil {
-				return err
-			}
-		}
+	if err := r.SetBodyParam(o.Body); err != nil {
+		return err
 	}
 
 	if len(res) > 0 {

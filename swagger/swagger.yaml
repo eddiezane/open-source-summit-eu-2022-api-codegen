@@ -12,7 +12,7 @@ produces:
 consumes:
   - application/json
 paths:
-  '/images/{id}':
+  '/v1/images/{id}':
     parameters:
       - type: string
         name: id
@@ -25,7 +25,10 @@ paths:
         '200':
           description: OK
           schema:
-            $ref: '#/definitions/Image'
+            type: object
+            properties:
+              image:
+                $ref: '#/definitions/Image'
       operationId: get-image
     delete:
       summary: ''
@@ -33,17 +36,21 @@ paths:
       responses:
         '200':
           description: OK
-  /images:
+  /v1/images:
     get:
       summary: Your GET endpoint
       tags: []
+      operationId: list-images
       responses:
         '200':
           description: OK
           schema:
             type: object
-            properties: {}
-      operationId: get-images
+            properties:
+              images:
+                type: array
+                items:
+                  $ref: '#/definitions/Image'
     post:
       summary: ''
       operationId: create-image
@@ -51,11 +58,19 @@ paths:
         '200':
           description: OK
           schema:
-            $ref: '#/definitions/Image'
+            type: object
+            properties:
+              image:
+                $ref: '#/definitions/Image'
       parameters:
-        - in: formData
-          type: string
-          name: prompt
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              prompt:
+                type: string
+    parameters: []
 definitions:
   Image:
     title: Image

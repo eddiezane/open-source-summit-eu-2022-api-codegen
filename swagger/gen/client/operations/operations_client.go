@@ -36,7 +36,7 @@ type ClientService interface {
 
 	GetImage(params *GetImageParams, opts ...ClientOption) (*GetImageOK, error)
 
-	GetImages(params *GetImagesParams, opts ...ClientOption) (*GetImagesOK, error)
+	ListImages(params *ListImagesParams, opts ...ClientOption) (*ListImagesOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -52,7 +52,7 @@ func (a *Client) CreateImage(params *CreateImageParams, opts ...ClientOption) (*
 	op := &runtime.ClientOperation{
 		ID:                 "create-image",
 		Method:             "POST",
-		PathPattern:        "/images",
+		PathPattern:        "/v1/images",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -90,7 +90,7 @@ func (a *Client) DeleteImage(params *DeleteImageParams, opts ...ClientOption) (*
 	op := &runtime.ClientOperation{
 		ID:                 "delete-image",
 		Method:             "DELETE",
-		PathPattern:        "/images/{id}",
+		PathPattern:        "/v1/images/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -128,7 +128,7 @@ func (a *Client) GetImage(params *GetImageParams, opts ...ClientOption) (*GetIma
 	op := &runtime.ClientOperation{
 		ID:                 "get-image",
 		Method:             "GET",
-		PathPattern:        "/images/{id}",
+		PathPattern:        "/v1/images/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -156,22 +156,22 @@ func (a *Client) GetImage(params *GetImageParams, opts ...ClientOption) (*GetIma
 }
 
 /*
-GetImages yours g e t endpoint
+ListImages yours g e t endpoint
 */
-func (a *Client) GetImages(params *GetImagesParams, opts ...ClientOption) (*GetImagesOK, error) {
+func (a *Client) ListImages(params *ListImagesParams, opts ...ClientOption) (*ListImagesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetImagesParams()
+		params = NewListImagesParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "get-images",
+		ID:                 "list-images",
 		Method:             "GET",
-		PathPattern:        "/images",
+		PathPattern:        "/v1/images",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
 		Params:             params,
-		Reader:             &GetImagesReader{formats: a.formats},
+		Reader:             &ListImagesReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -183,13 +183,13 @@ func (a *Client) GetImages(params *GetImagesParams, opts ...ClientOption) (*GetI
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*GetImagesOK)
+	success, ok := result.(*ListImagesOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for get-images: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for list-images: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

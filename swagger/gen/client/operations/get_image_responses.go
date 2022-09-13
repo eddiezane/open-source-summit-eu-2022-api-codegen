@@ -6,11 +6,14 @@ package operations
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"fmt"
 	"io"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 
 	"github.com/eddiezane/open-source-summit-eu-2022-api-codegen/swagger/gen/models"
 )
@@ -45,7 +48,7 @@ GetImageOK describes a response with status code 200, with default header values
 OK
 */
 type GetImageOK struct {
-	Payload *models.Image
+	Payload *GetImageOKBody
 }
 
 // IsSuccess returns true when this get image o k response has a 2xx status code
@@ -74,25 +77,116 @@ func (o *GetImageOK) IsCode(code int) bool {
 }
 
 func (o *GetImageOK) Error() string {
-	return fmt.Sprintf("[GET /images/{id}][%d] getImageOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/images/{id}][%d] getImageOK  %+v", 200, o.Payload)
 }
 
 func (o *GetImageOK) String() string {
-	return fmt.Sprintf("[GET /images/{id}][%d] getImageOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/images/{id}][%d] getImageOK  %+v", 200, o.Payload)
 }
 
-func (o *GetImageOK) GetPayload() *models.Image {
+func (o *GetImageOK) GetPayload() *GetImageOKBody {
 	return o.Payload
 }
 
 func (o *GetImageOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Image)
+	o.Payload = new(GetImageOKBody)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
+	return nil
+}
+
+/*
+GetImageOKBody get image o k body
+swagger:model GetImageOKBody
+*/
+type GetImageOKBody struct {
+
+	// image
+	Image *models.Image `json:"image,omitempty"`
+}
+
+// Validate validates this get image o k body
+func (o *GetImageOKBody) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := o.validateImage(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (o *GetImageOKBody) validateImage(formats strfmt.Registry) error {
+	if swag.IsZero(o.Image) { // not required
+		return nil
+	}
+
+	if o.Image != nil {
+		if err := o.Image.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("getImageOK" + "." + "image")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("getImageOK" + "." + "image")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this get image o k body based on the context it is used
+func (o *GetImageOKBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := o.contextValidateImage(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (o *GetImageOKBody) contextValidateImage(ctx context.Context, formats strfmt.Registry) error {
+
+	if o.Image != nil {
+		if err := o.Image.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("getImageOK" + "." + "image")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("getImageOK" + "." + "image")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (o *GetImageOKBody) MarshalBinary() ([]byte, error) {
+	if o == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(o)
+}
+
+// UnmarshalBinary interface implementation
+func (o *GetImageOKBody) UnmarshalBinary(b []byte) error {
+	var res GetImageOKBody
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*o = res
 	return nil
 }
