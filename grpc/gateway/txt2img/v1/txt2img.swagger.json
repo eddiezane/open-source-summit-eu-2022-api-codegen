@@ -171,17 +171,28 @@
     "v1GenerateImageResponse": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "string"
-        },
-        "url": {
-          "type": "string"
+        "image": {
+          "$ref": "#/definitions/v1Image"
         }
       }
     },
     "v1GetImageResponse": {
       "type": "object",
       "properties": {
+        "image": {
+          "$ref": "#/definitions/v1Image"
+        }
+      }
+    },
+    "v1Image": {
+      "type": "object",
+      "properties": {
+        "prompt": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
         "url": {
           "type": "string"
         }
@@ -193,7 +204,7 @@
         "images": {
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "#/definitions/v1Image"
           }
         }
       }

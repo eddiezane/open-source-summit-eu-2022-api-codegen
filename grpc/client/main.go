@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 
 	txt2imgv1 "github.com/eddiezane/open-source-summit-eu-2022-api-codegen/grpc/client/txt2img/v1"
 )
@@ -17,7 +18,7 @@ func main() {
 		panic(errors.New("TXT2IMG_HOST required"))
 	}
 
-	conn, err := grpc.Dial(host, grpc.WithInsecure())
+	conn, err := grpc.Dial(host, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		panic(err)
 	}
@@ -28,14 +29,14 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(gir.Url)
+	fmt.Println(gir.GetImage().GetUrl())
 
 	lir, err := client.ListImages(context.Background(), &txt2imgv1.ListImagesRequest{})
 	if err != nil {
 		panic(err)
 	}
 
-	for _, id := range lir.Images {
-		client.DeleteImage(context.Background(), &txt2imgv1.DeleteImageRequest{Id: id})
+	for _, img := range lir.Images {
+		client.DeleteImage(context.Background(), &txt2imgv1.DeleteImageRequest{Id: img.GetId()})
 	}
 }

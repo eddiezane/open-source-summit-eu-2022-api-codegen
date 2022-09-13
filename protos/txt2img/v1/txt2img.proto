@@ -6,13 +6,18 @@ import "google/api/annotations.proto";
 
 option go_package = "github.com/eddiezane/open-source-summit-eu-2022-api-codegen/grpc/client/txt2img/v1;txt2imgv1";
 
+message Image {
+  string prompt = 1;
+  string id = 2;
+  string url = 3;
+}
+
 message GenerateImageRequest {
   string prompt = 1;
 }
 
 message GenerateImageResponse {
-  string id = 1;
-  string url = 2;
+  Image image = 1;
 }
 
 message GetImageRequest {
@@ -20,14 +25,14 @@ message GetImageRequest {
 }
 
 message GetImageResponse {
-  string url = 1;
+  Image image = 1;
 }
 
 message ListImagesRequest {
 }
 
 message ListImagesResponse {
-  repeated string images = 1;
+  repeated Image images = 1;
 }
 
 message DeleteImageRequest {

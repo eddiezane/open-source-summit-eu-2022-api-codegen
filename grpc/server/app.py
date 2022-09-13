@@ -25,8 +25,9 @@ class Txt2ImgService(txt2img_pb2_grpc.Txt2ImgServiceServicer):
         with self.images_lock:
             id = str(uuid())
             url = upload_image(id, image)
-            self.images[id] = url
-        return txt2img_pb2.GenerateImageResponse(id=id, url=url)
+            img = txt2img_pb2.Image(prompt=prompt, id=id, url=url)
+            self.images[id] = img
+        return txt2img_pb2.GenerateImageResponse(image=img)
 
     def GetImage(self, request, context):
         id = request.id
@@ -35,12 +36,12 @@ class Txt2ImgService(txt2img_pb2_grpc.Txt2ImgServiceServicer):
         with self.images_lock:
             if id not in self.images:
                 context.abort(grpc.StatusCode.INVALID_ARGUMENT, "id not found")
-            url = self.images[id]
-        return txt2img_pb2.GetImageResponse(url=url)
+            img = self.images[id]
+        return txt2img_pb2.GetImageResponse(image=img)
 
     def ListImages(self, request, context):
         with self.images_lock:
-            images = self.images.keys()
+            images = self.images
         return txt2img_pb2.ListImagesResponse(images=images)
 
     def DeleteImage(self, request, context):
