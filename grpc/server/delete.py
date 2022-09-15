@@ -12,6 +12,6 @@ client = txt2img_pb2_grpc.Txt2ImgServiceStub(channel)
 res = client.ListImages(txt2img_pb2.ListImagesRequest())
 print(f"{res}")
 
-for id in res.images:
-    res = client.DeleteImage(txt2img_pb2.DeleteImageRequest(id=id))
+for img in res.images:
+    res = client.DeleteImage(txt2img_pb2.DeleteImageRequest(id=img.id))
     print(f"{res}")
