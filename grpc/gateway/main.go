@@ -26,9 +26,21 @@ func main() {
 
 	gwServer := &http.Server{
 		Addr:    ":8081",
-		Handler: gwmux,
+		Handler: cors(gwmux),
 	}
 
 	log.Println("starting grpc gateway")
 	log.Fatalln(gwServer.ListenAndServe())
+}
+
+func cors(h http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		if r.Method == http.MethodOptions {
+			w.Header().Set("Access-Control-Allow-Methods", "*")
+			w.Header().Set("Access-Control-Allow-Headers", "*")
+			return
+		}
+		h.ServeHTTP(w, r)
+	})
 }
