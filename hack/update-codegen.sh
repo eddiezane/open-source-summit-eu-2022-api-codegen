@@ -18,3 +18,5 @@ buf generate
 swagger generate client -t swagger/gen -f swagger/swagger.yaml
 
 protoc -I grpc/simple/hello --go_out=grpc/simple/hello --go_opt=paths=source_relative --go-grpc_out=grpc/simple/hello --go-grpc_opt=paths=source_relative grpc/simple/hello/hello.proto
+
+swagger generate client -t grpc/gateway/txt2img/v1 -f grpc/gateway/txt2img/v1/txt2img.swagger.json
