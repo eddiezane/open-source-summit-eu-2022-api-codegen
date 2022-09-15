@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package hello;
+
+option go_package = "github.com/eddiezane/open-source-summit-eu-2022-api-codegen/grpc/simple/hello";
+
+message HelloRequest {
+  string name = 1;
+}
+
+message HelloResponse {
+  string greeting = 1;
+}
+
+service GreeterService {
+  rpc Greet(HelloRequest) returns (HelloResponse) {}
+}
